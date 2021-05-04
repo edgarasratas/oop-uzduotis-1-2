@@ -6,7 +6,7 @@ void strategyOneD(deque<Student>& studentD, deque<Student>& losers, deque<Studen
 
     for (int i = 0; i < studentD.size(); i++)
     {
-        if (studentD[i].final < 5)
+        if (studentD[i].getFinal() < 5)
         {
             losers.push_back(studentD[i]);
         }
@@ -28,16 +28,16 @@ void strategyOneD(deque<Student>& studentD, deque<Student>& losers, deque<Studen
 
     for (Student &a : losers)
     {
-        foutLosers << std::setw(15) << std::left << a.name
-                   << std::setw(15) << std::left << a.surname
-                   << std::setw(15) << std::left << fixed << std::setprecision(2) << a.final << '\n';
+        foutLosers << std::setw(15) << std::left << a.getName()
+                   << std::setw(15) << std::left << a.getSurname()
+                   << std::setw(15) << std::left << fixed << std::setprecision(2) << a.getFinal() << '\n';
     }
 
     for (Student &a : winners)
     {
-        foutWinners << std::setw(15) << std::left << a.name
-                    << std::setw(15) << std::left << a.surname
-                    << std::setw(15) << std::left << fixed << std::setprecision(2) << a.final << '\n';
+        foutWinners << std::setw(15) << std::left << a.getName()
+                    << std::setw(15) << std::left << a.getSurname()
+                    << std::setw(15) << std::left << fixed << std::setprecision(2) << a.getFinal() << '\n';
     }
 }
 
@@ -47,7 +47,7 @@ void strategyTwoD(deque<Student>& studentD, deque<Student>& losers, string fileS
 
     for (int i = 0; i < studentD.size(); i++)
     {
-        if (studentD[i].final < 5)
+        if (studentD[i].getFinal() < 5)
         {
             losers.push_back(studentD[i]);
         }
@@ -67,15 +67,15 @@ void strategyTwoD(deque<Student>& studentD, deque<Student>& losers, string fileS
 
     for (Student &a : losers)
     {
-        foutLosers << std::setw(15) << std::left << a.name
-                   << std::setw(15) << std::left << a.surname
-                   << std::setw(15) << std::left << fixed << std::setprecision(2) << a.final << '\n';
+        foutLosers << std::setw(15) << std::left << a.getName()
+                   << std::setw(15) << std::left << a.getSurname()
+                   << std::setw(15) << std::left << fixed << std::setprecision(2) << a.getFinal() << '\n';
     }
 
     for (Student &a : studentD)
     {
-        foutWinners << std::setw(15) << std::left << a.name
-                    << std::setw(15) << std::left << a.surname
-                    << std::setw(15) << std::left << fixed << std::setprecision(2) << a.final << '\n';
+        foutWinners << std::setw(15) << std::left << a.getName()
+                    << std::setw(15) << std::left << a.getSurname()
+                    << std::setw(15) << std::left << fixed << std::setprecision(2) << a.getFinal() << '\n';
     }
 }

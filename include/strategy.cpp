@@ -5,10 +5,10 @@ void strategyOneV(vector<Student>&student, vector<Student>& losers, vector<Stude
     ofstream foutWinners(fileSortWinners);
 
         for (auto &a : student) {
-            if (a.final < 5) {
+            if (a.getFinal() < 5) {
                 losers.push_back(a);
             }
-            else if (a.final >= 5) {
+            else if (a.getFinal() >= 5) {
                 winners.push_back(a);
             }
         }
@@ -24,15 +24,15 @@ void strategyOneV(vector<Student>&student, vector<Student>& losers, vector<Stude
                     << "--------------------------------------------- " << '\n';
 
         for (Student &a : losers) {
-            foutLosers << std::setw(15) << std::left << a.name
-                       << std::setw(15) << std::left << a.surname
-                       << std::setw(15) << std::left << fixed << std::setprecision(2) << a.final << '\n';
+            foutLosers << std::setw(15) << std::left << a.getName()
+                       << std::setw(15) << std::left << a.getSurname()
+                       << std::setw(15) << std::left << fixed << std::setprecision(2) << a.getFinal() << '\n';
         }
 
         for (Student &a : winners) {
-            foutWinners << std::setw(15) << std::left << a.name
-                        << std::setw(15) << std::left << a.surname
-                        << std::setw(15) << std::left << fixed << std::setprecision(2) << a.final << '\n';
+            foutWinners << std::setw(15) << std::left << a.getName()
+                        << std::setw(15) << std::left << a.getSurname()
+                        << std::setw(15) << std::left << fixed << std::setprecision(2) << a.getFinal() << '\n';
         }
 }
 
@@ -41,7 +41,7 @@ void strategyTwoV(vector<Student>& student, vector<Student>& losers, string file
     ofstream foutWinners(fileSortWinners);
 
     for (auto &a : student) {
-        if (a.final < 5) {
+        if (a.getFinal() < 5) {
             losers.push_back(a);
         }
     }
@@ -59,14 +59,14 @@ void strategyTwoV(vector<Student>& student, vector<Student>& losers, string file
                 << "--------------------------------------------- " << '\n';
 
     for (Student &a : losers) {
-        foutLosers << std::setw(15) << std::left << a.name
-                   << std::setw(15) << std::left << a.surname
-                   << std::setw(15) << std::left << fixed << std::setprecision(2) << a.final << '\n';
+        foutLosers << std::setw(15) << std::left << a.getName()
+                   << std::setw(15) << std::left << a.getSurname()
+                   << std::setw(15) << std::left << fixed << std::setprecision(2) << a.getFinal() << '\n';
     }
 
     for (Student &a : student) {
-        foutWinners << std::setw(15) << std::left << a.name
-                    << std::setw(15) << std::left << a.surname
-                    << std::setw(15) << std::left << fixed << std::setprecision(2) << a.final << '\n';
+        foutWinners << std::setw(15) << std::left << a.getName()
+                    << std::setw(15) << std::left << a.getSurname()
+                    << std::setw(15) << std::left << fixed << std::setprecision(2) << a.getFinal() << '\n';
     }
 }

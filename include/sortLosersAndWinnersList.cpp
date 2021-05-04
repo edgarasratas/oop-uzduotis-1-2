@@ -46,12 +46,12 @@ void sortLosersAndWinnersList(string fileRead, string fileSortLosers, string fil
 
     for (auto &student : studentL) {
         std::advance(it, 1);
-        student.examFinal = 0.6 * student.examGrade;
+        student.setExamFinal(0.6 * student.getExamGrade());
 
-        for (int j = 0; j < student.numOfGrades - 1; j++) {
-            sum += student.grade[j];
+        for (int j = 0; j < student.getNumOfGrades() - 1; j++) {
+            sum += student.getGrade(j);
             try {
-                if (student.grade[j] < 1 || student.grade[j] > 10 || student.examGrade < 1 || student.examGrade > 10) {
+                if (student.getGrade(j) < 1 || student.getGrade(j) > 10 || student.getExamGrade() < 1 || student.getExamGrade() > 10) {
                     throw std::exception("Ivestas netinkamas pazymys...");
                 }
             }
@@ -60,19 +60,19 @@ void sortLosersAndWinnersList(string fileRead, string fileSortLosers, string fil
                 std::exit(EXIT_FAILURE);
             }
         }
-        int gradeNr = student.numOfGrades - 1;
+        int gradeNr = student.getNumOfGrades() - 1;
         vid = (double)sum / gradeNr;
 
-        student.final = 0.4 * vid + student.examFinal;
+        student.setFinal(0.4 * vid + student.getExamFinal());
         sum = 0;
 
-        if (student.numOfGrades % 2 == 0) {
-            student.median = (student.grade[student.numOfGrades / 2] + student.grade[(student.numOfGrades / 2) - 1]) / 2.00;
+        if (student.getNumOfGrades() % 2 == 0) {
+            student.setMedian((student.getGrade(student.getNumOfGrades() / 2) + student.getGrade((student.getNumOfGrades() / 2) - 1)) / 2.00);
         }
         else {
-            student.median = student.grade[student.numOfGrades / 2];
+            student.setMedian(student.getGrade(student.getNumOfGrades() / 2));
         }
-        student.medFinal = (0.4 * student.median) + (0.6 * student.examGrade);
+        student.setMedFinal((0.4 * student.getMedian()) + (0.6 * student.getExamGrade()));
     }
 
     //strategy 1

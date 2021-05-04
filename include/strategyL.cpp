@@ -5,10 +5,10 @@ void strategyOneL(list<Student>& studentL, list<Student>& losers, list<Student>&
     ofstream foutWinners(fileSortWinners);
 
     for (auto &student : studentL) {
-        if (student.final < 5) {
+        if (student.getFinal() < 5) {
             losers.push_back(student);
         }
-        else if (student.final >= 5) {
+        else if (student.getFinal() >= 5) {
             winners.push_back(student);
         }
     }
@@ -24,15 +24,15 @@ void strategyOneL(list<Student>& studentL, list<Student>& losers, list<Student>&
                 << "--------------------------------------------- " << '\n';
 
     for (Student &a : losers) {
-        foutLosers << std::setw(15) << std::left << a.name
-                   << std::setw(15) << std::left << a.surname
-                   << std::setw(15) << std::left << fixed << std::setprecision(2) << a.final << '\n';
+        foutLosers << std::setw(15) << std::left << a.getName()
+                   << std::setw(15) << std::left << a.getSurname()
+                   << std::setw(15) << std::left << fixed << std::setprecision(2) << a.getFinal() << '\n';
     }
 
     for (Student &a : winners) {
-        foutWinners << std::setw(15) << std::left << a.name
-                    << std::setw(15) << std::left << a.surname
-                    << std::setw(15) << std::left << fixed << std::setprecision(2) << a.final << '\n';
+        foutWinners << std::setw(15) << std::left << a.getName()
+                    << std::setw(15) << std::left << a.getSurname()
+                    << std::setw(15) << std::left << fixed << std::setprecision(2) << a.getFinal() << '\n';
     }
 }
 
@@ -41,7 +41,7 @@ void strategyTwoL(list<Student>& studentL, list<Student>& losers, string fileSor
     ofstream foutWinners(fileSortWinners);
 
     for (auto &student : studentL) {
-        if (student.final < 5) {
+        if (student.getFinal() < 5) {
             losers.push_back(student);
         }
     }
@@ -59,14 +59,14 @@ void strategyTwoL(list<Student>& studentL, list<Student>& losers, string fileSor
                 << "--------------------------------------------- " << '\n';
 
     for (Student &a : losers) {
-        foutLosers << std::setw(15) << std::left << a.name
-                   << std::setw(15) << std::left << a.surname
-                   << std::setw(15) << std::left << fixed << std::setprecision(2) << a.final << '\n';
+        foutLosers << std::setw(15) << std::left << a.getName()
+                   << std::setw(15) << std::left << a.getSurname()
+                   << std::setw(15) << std::left << fixed << std::setprecision(2) << a.getFinal() << '\n';
     }
 
     for (Student &a : studentL) {
-        foutWinners << std::setw(15) << std::left << a.name
-                    << std::setw(15) << std::left << a.surname
-                    << std::setw(15) << std::left << fixed << std::setprecision(2) << a.final << '\n';
+        foutWinners << std::setw(15) << std::left << a.getName()
+                    << std::setw(15) << std::left << a.getSurname()
+                    << std::setw(15) << std::left << fixed << std::setprecision(2) << a.getFinal() << '\n';
     }
 }

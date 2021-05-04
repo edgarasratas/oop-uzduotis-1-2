@@ -5,6 +5,8 @@ void readValuesList(list<Student>& studentD, string fileRead, stringstream& my_b
     string eil;
     stringstream buffer2;
     Student temp;
+    string name;
+    string surname;
     int temp2;
 
     cout << "Failas skaitomas..." << '\n';
@@ -15,17 +17,18 @@ void readValuesList(list<Student>& studentD, string fileRead, stringstream& my_b
             getline(my_buffer, eil);
             buffer2 << eil;
 
-            buffer2 >> temp.name >> temp.surname;
+            buffer2 >> name >> surname;
+            temp.setName(name);
+            temp.setSurname(surname);
             while (!buffer2.eof()) {
                 buffer2 >> temp2;
-                temp.grade.push_back(temp2);
+                temp.addGrade(temp2);
             }
             buffer2.clear();
-            temp.examGrade = temp.grade[temp.grade.size() - 1];
+            temp.setExamGrade(temp.getGrade(temp.containerSize() - 1));
             if (!my_buffer.eof())
-                temp.grade.pop_back();
-            temp.grade.shrink_to_fit();
-            temp.numOfGrades = temp.grade.size();
+                temp.deleteLastGrade();
+            temp.setNumOfGrades(temp.containerSize());
             studentD.push_back(temp);
             temp = {};
         }

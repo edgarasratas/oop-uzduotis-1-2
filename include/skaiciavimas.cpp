@@ -8,6 +8,8 @@ void skaiciavimas() {
     int inputInt;
     int randomNumber, randomExamGrade;
     int temp;
+    int examGrade;
+    int gradeNr;
     vector<Student> student;
 
     cout << "Iveskite reikiama studentu skaiciu: \n";
@@ -26,13 +28,15 @@ void skaiciavimas() {
 
         cout << i + 1 << " studentas\n";
         cout << "Iveskite studento varda: ";
-        cin >> student[i].name;
+        cin >> student[i].getName();
 
         cout << "Iveskite studento pavarde: ";
-        cin >> student[i].surname;
+        cin >> student[i].getSurname();
 
         cout << "Iveskite studento nd pazymiu kieki: ";
-        cin >> student[i].numOfGrades;
+        cin >> gradeNr;
+
+        student[i].setNumOfGrades(gradeNr);
 
         cout << "Ar zinomi studento pazymiai? (y/n)\n";
         cin >> input;
@@ -41,16 +45,18 @@ void skaiciavimas() {
             if (input == "Y" || input == "y") {
 
                 cout << "Iveskite egzamino pazymi: ";
-                cin >> student[i].examGrade;
+                cin >> examGrade;
 
-                for (int j = 0; j < student[i].numOfGrades; j++) {
+                student[i].setExamGrade(examGrade);
+
+                for (int j = 0; j < student[i].getNumOfGrades(); j++) {
 
                     cout << "Iveskite " << j + 1 << " nd pazymi: ";
                     cin >> temp;
 
-                    student[i].grade.push_back(temp);
+                    student[i].addGrade(temp);
 
-                    sum += student[i].grade[j];
+                    sum += student[i].getGrade(j);
                 }
 
                 cout << '\n';
@@ -63,21 +69,21 @@ void skaiciavimas() {
 
                 randomExamGrade = rand() % 10 + 1;
 
-                student[i].examGrade = randomExamGrade;
+                student[i].setExamGrade(randomExamGrade);
 
 
-                for (int j = 0; j < student[i].numOfGrades; j++) {
+                for (int j = 0; j < student[i].getNumOfGrades(); j++) {
                     randomNumber = rand() % 10 + 1;
 
-                    student[i].grade.push_back(randomNumber);
+                    student[i].addGrade(randomNumber);
 
-                    sum += student[i].grade[j];
+                    sum += student[i].getGrade(j);
                 }
 
-                cout << "Egzamino pazymys: " << student[i].examGrade << "\nNd pazymiai: ";
+                cout << "Egzamino pazymys: " << student[i].getExamGrade() << "\nNd pazymiai: ";
 
-                for (int j = 0; j < student[i].numOfGrades; j++) {
-                    cout << student[i].grade[j] << " ";
+                for (int j = 0; j < student[i].getNumOfGrades(); j++) {
+                    cout << student[i].getGrade(j) << " ";
                 }
 
                 cout << '\n';
@@ -90,17 +96,17 @@ void skaiciavimas() {
             }
         } while (input != "Y" || input != "y" || input != "N" || input != "n");
 
-    student[i].examFinal = 0.6 * student[i].examGrade;
+    student[i].setExamFinal(0.6 * student[i].getExamGrade());
 
-    for (int j = 1; j < student[i].numOfGrades; j++) {
-        student[i].final = 0.4 * (sum / (student[i].numOfGrades)) + student[i].examFinal;
+    for (int j = 1; j < student[i].getNumOfGrades(); j++) {
+        student[i].setFinal(0.4 * (sum / (student[i].getNumOfGrades())) + student[i].getExamFinal());
     }
 
     sum = 0;
 
-    sort(student[i].grade.begin(), student[i].grade.end());
+    //sort(student[i].getGrade().begin(), student[i].getGrade().end());
 
-    for (int j = 0; j < student[i].numOfGrades; j++) {
+    for (int j = 0; j < student[i].getNumOfGrades(); j++) {
     }
     cout << '\n';
     }
@@ -114,7 +120,9 @@ void skaiciavimas() {
             printf("-----------------------------------------------------\n");
 
             for (int i = 0; i < n; i++) {
-                printf("%s\t\t%s\t\t%0.2f\n", student[i].name.c_str(), student[i].surname.c_str(), student[i].final);
+                cout << std::setw(15) << std::left << student[i].getName()
+                     << std::setw(15) << std::left << student[i].getSurname()
+                     << std::setw(15) << std::left << student[i].getFinal();
             }
             break;
         }
@@ -123,16 +131,18 @@ void skaiciavimas() {
             printf("-----------------------------------------------------\n");
 
             for (int i = 0; i < n; i++) {
-                sort(student[i].grade.begin(), student[i].grade.end());
+                student[i].sortGrades();
 
-                if (student[i].numOfGrades % 2 == 0) {
-                    student[i].median = (student[i].grade[student[i].numOfGrades / 2] + student[i].grade[(student[i].numOfGrades / 2) - 1]) / 2.0;
+                if (student[i].getNumOfGrades() % 2 == 0) {
+                    student[i].setMedian((student[i].getGrade(student[i].getNumOfGrades() / 2) + student[i].getGrade((student[i].getNumOfGrades() / 2) - 1)) / 2.0);
                 }
                 else {
-                    student[i].median = student[i].grade[student[i].numOfGrades / 2];
+                    student[i].setMedian(student[i].getGrade(student[i].getNumOfGrades() / 2));
                 }
-                student[i].medFinal = (0.4 * student[i].median) + (0.6 * student[i].examGrade);
-                printf("%s\t\t%s\t\t%0.2f\n", student[i].name.c_str(), student[i].surname.c_str(), student[i].medFinal);
+                student[i].setMedFinal((0.4 * student[i].getMedian()) + (0.6 * student[i].getExamGrade()));
+                cout << std::setw(15) << std::left << student[i].getName()
+                    << std::setw(15) << std::left << student[i].getSurname()
+                    << std::setw(15) << std::left << student[i].getMedFinal();
             }
             break;
         }

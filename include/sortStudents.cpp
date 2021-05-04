@@ -1,5 +1,5 @@
 #include "Funkcijos.h"
 
 bool isBad(const Student& a) {
-	return a.final < 5;
+	return a.getFinal() < 5;
 }
