@@ -37,16 +37,16 @@ void nuskaitymasList(string fileRead, string fileWrite, string fileSortLosers, s
         std::exit(EXIT_FAILURE);
     }
 
-    cout << "Failas skaitomas..." << '\n';
-
     getline(fin, eil);
     my_buffer << fin.rdbuf();
+
+    readValuesList(studentL, fileRead, my_buffer);
 
     std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start;
     cout << "Failo nuskaitymo trukme: " << diff.count() << " s\n";
     cout << "Skaiciuojama..." << '\n';
 
-    readValuesList(studentL, fileRead, my_buffer);
+    start = std::chrono::high_resolution_clock::now();
 
     diff = std::chrono::high_resolution_clock::now() - start;
 
@@ -59,14 +59,16 @@ void nuskaitymasList(string fileRead, string fileWrite, string fileSortLosers, s
     fout << "Pavarde\t\t\t" << "Vardas\t\t" << "Galutinis (Vid)\t\t" << "Galutinis (Med.)\n";
     fout << "------------------------------------------------------------------------\n";
     for (auto &student : studentL) {
-        student.examFinal = 0.6 * student.examGrade;
-        fout << student.surname << string(16 - student.surname.length(), ' ') << student.name << string(13 - student.name.length(), ' ') << "\t\t";
+        student.setExamFinal(0.6 * student.getExamGrade());
+        fout << std::setw(15) << std::left << student.getSurname()
+             << std::setw(15) << std::left << student.getName();
 
-        for (int j = 0; j < student.numOfGrades - 1; j++) {
-            sort(student.grade.begin(), student.grade.end() - 1);
-            sum += student.grade[j];
+        for (int j = 0; j < student.getNumOfGrades() - 1; j++) {
+            student.deleteLastGrade();
+            student.sortGrades();
+            sum += student.getGrade(j);
             try {
-                if (student.grade[j] < 1 || student.grade[j] > 10 || student.examGrade < 1 || student.examGrade > 10) {
+                if (student.getGrade(j) < 1 || student.getGrade(j) > 10 || student.getExamGrade() < 1 || student.getExamGrade() > 10) {
                     throw std::exception("Ivestas netinkamas pazymys...");
                 }
             }
@@ -75,26 +77,24 @@ void nuskaitymasList(string fileRead, string fileWrite, string fileSortLosers, s
                 std::exit(EXIT_FAILURE);
             }
         }
-        int gradeNr = student.numOfGrades - 1;
+        int gradeNr = student.getNumOfGrades() - 1;
         vid = (double)sum / gradeNr;
 
-        student.final = 0.4 * vid + student.examFinal;
+        student.setFinal(0.4 * vid + student.getExamFinal());
 
         sum = 0;
 
         if (gradeNr % 2 == 0) {
-            student.median = (student.grade[gradeNr / 2] + student.grade[(gradeNr / 2) - 1]) / 2.00;
+            student.setMedian((student.getGrade(gradeNr / 2) + student.getGrade((gradeNr / 2) - 1)) / 2.00);
         }
         else {
-            student.median = student.grade[gradeNr / 2];
+            student.setMedian(student.getGrade(gradeNr / 2));
         }
-        student.medFinal = (0.4 * student.median) + (0.6 * student.examGrade);
-        fout << fixed << std::setprecision(2) << student.final;
+        student.setMedFinal((0.4 * student.getMedian()) + (0.6 * student.getExamGrade()));
 
-        fout.fill(' ');
-        fout.width(20);
+        fout << std::setw(20) << std::left << fixed << std::setprecision(2) << student.getFinal();
 
-        fout << fixed << std::setprecision(2) << student.medFinal << '\n';
+        fout << std::setw(20) << std::left << fixed << std::setprecision(2) << student.getMedFinal() << '\n';
     }
 
     diff = std::chrono::high_resolution_clock::now() - start;
@@ -105,17 +105,15 @@ void nuskaitymasList(string fileRead, string fileWrite, string fileSortLosers, s
     start = std::chrono::high_resolution_clock::now();
 
     for (Student &student : studentL) {
-        if (student.final < 5) {
-            foutLosers << student.name << string(16 - student.name.length(), ' ') << student.surname << string(16 - student.surname.length(), ' ');
-            foutLosers.fill(' ');
-            foutLosers.width(10);
-            foutLosers << fixed << std::setprecision(2) << student.final << '\n';
+        if (student.getFinal() < 5) {
+            foutLosers << std::setw(15) << std::left << student.getName()
+                       << std::setw(15) << std::left << student.getSurname()
+                       << std::setw(15) << std::left << fixed << std::setprecision(2) << student.getFinal() << '\n';
         }
-        else if (student.final >= 5) {
-            foutWinners << student.name << string(16 - student.surname.length(), ' ') << student.surname << string(16 - student.surname.length(), ' ');
-            foutWinners.fill(' ');
-            foutWinners.width(10);
-            foutWinners << fixed << std::setprecision(2) << student.final << '\n';
+        else if (student.getFinal() >= 5) {
+            foutWinners << std::setw(15) << std::left << student.getName()
+                        << std::setw(15) << std::left << student.getSurname()
+                        << std::setw(15) << std::left << fixed << std::setprecision(2) << student.getFinal() << '\n';
         }
     }
     fin.close();

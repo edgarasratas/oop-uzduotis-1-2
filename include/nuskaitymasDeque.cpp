@@ -1,10 +1,11 @@
 #include "Header.h"
 #include "Funkcijos.h"
 
+//function to read the file 
+
 void nuskaitymasDeque(string fileRead, string fileWrite, string fileSortLosers, string fileSortWinners, deque<Student>& studentD) {
     string eil;
     stringstream my_buffer;
-    deque<string> myDeque;
     deque<Student> losers;
     deque<Student> winners;
     int sum = 0;
@@ -12,6 +13,7 @@ void nuskaitymasDeque(string fileRead, string fileWrite, string fileSortLosers, 
     int strategy;
     int index = 0;
 
+    //confusing af, need index and these if statements to avoid certain bugs
     do {
         index++;
         if (index != 1)
@@ -43,39 +45,37 @@ void nuskaitymasDeque(string fileRead, string fileWrite, string fileSortLosers, 
         std::exit(EXIT_FAILURE);
     }
 
+    readValuesDeque(studentD, fileRead, my_buffer); // reads values from the file and puts them in the 'Student' class
+
     std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start;
     cout << "Failo nuskaitymo trukme: " << diff.count() << " s\n";
     cout << "Skaiciuojama..." << '\n';
 
     start = std::chrono::high_resolution_clock::now();
 
-    readValuesDeque(studentD, fileRead, my_buffer);
-
     diff = std::chrono::high_resolution_clock::now() - start;
-
-    string output = "";
-
-    for (string& a : myDeque) (a.compare(*myDeque.rbegin()) != 0) ? output += a + "\n" : output += a;
-    myDeque.clear();
 
     ofstream fout(fileWrite);
     ofstream foutLosers(fileSortLosers);
     ofstream foutWinners(fileSortWinners);
 
-    sort(studentD.begin(), studentD.end(), compareByLastName);
+    sort(studentD.begin(), studentD.end(), compareByLastName); //sorts students alphabetically
 
-    fout << "Pavarde\t\t\t" << "Vardas\t\t" << "Galutinis (Vid)\t\t" << "Galutinis (Med.)\n";
-    fout << "------------------------------------------------------------------------\n";
+    fout << "Pavarde\t\t\t" << "Vardas\t\t" << "Galutinis (Vid)\t\t" << "Galutinis (Med.)\n"
+         << "------------------------------------------------------------------------\n";
+
+    //calculates the final grade and the final median grade
     for (auto &a : studentD) {
-        a.examFinal = 0.6 * a.examGrade;
-        fout << std::setw(15) << std::left << a.surname
-             << std::setw(15) << std::left << a.name;
+        a.setExamFinal(0.6 * a.getExamGrade());
+        fout << std::setw(15) << std::left << a.getSurname()
+             << std::setw(15) << std::left << a.getName();
 
-        for (int j = 0; j < a.numOfGrades - 1; j++) {
-            sort(a.grade.begin(), a.grade.end() - 1);
-            sum += a.grade[j];
+        for (int j = 0; j < a.getNumOfGrades() - 1; j++) {
+            a.deleteLastGrade();
+            a.sortGrades();
+            sum += a.getGrade(j);
             try {
-                if (a.grade[j] < 1 || a.grade[j] > 10 || a.examGrade < 1 || a.examGrade > 10) {
+                if (a.getGrade(j) < 1 || a.getGrade(j) > 10 || a.getExamGrade() < 1 || a.getExamGrade() > 10) {
                     throw std::exception("Ivestas netinkamas pazymys...");
                 }
             }
@@ -84,28 +84,25 @@ void nuskaitymasDeque(string fileRead, string fileWrite, string fileSortLosers, 
                 std::exit(EXIT_FAILURE);
             }
         }
-        int gradeNr = a.numOfGrades - 1;
+        int gradeNr = a.getNumOfGrades() - 1;
         vid = (double)sum / gradeNr;
 
-        a.final = 0.4 * vid + a.examFinal;
+        a.setFinal(0.4 * vid + a.getExamFinal());
 
         sum = 0;
 
         if (gradeNr % 2 == 0) {
-            a.median = (a.grade[gradeNr / 2] + a.grade[(gradeNr / 2) - 1]) / 2.00;
+            a.setMedian((a.getGrade(gradeNr / 2) + a.getGrade((gradeNr / 2) - 1)) / 2.00);
         }
         else {
-            a.median = a.grade[gradeNr / 2];
+            a.setMedian(a.getGrade(gradeNr / 2));
         }
-        a.medFinal = (0.4 * a.median) + (0.6 * a.examGrade);
-        fout << fixed << std::setprecision(2) << a.final;
+        a.setMedFinal((0.4 * a.getMedian()) + (0.6 * a.getExamGrade()));
+        fout << std::setw(20) << std::left << fixed << std::setprecision(2) << a.getFinal();
 
-        fout.fill(' ');
-        fout.width(20);
-
-        fout << fixed << std::setprecision(2) << a.medFinal << '\n';
+        fout << std::setw(20) << std::left << fixed << std::setprecision(2) << a.getMedFinal() << '\n';
     }
-
+    
     diff = std::chrono::high_resolution_clock::now() - start;
 
     cout << "Sugeneruotas rezultatu failas 'Text files' folderyje\n";

@@ -45,13 +45,13 @@ void sortLosersAndWinnersDeque(string fileRead, string fileSortLosers, string fi
     ofstream foutWinners(fileSortWinners);
 
     for (auto &a : studentD) {
-        a.examFinal = 0.6 * a.examGrade;
+        a.setExamFinal(0.6 * a.getExamGrade());
 
-        for (int j = 0; j < a.numOfGrades - 1; j++) {
-            sort(a.grade.begin(), a.grade.end() - 1);
-            sum += a.grade[j];
+        for (int j = 0; j < a.getNumOfGrades() - 1; j++) {
+            a.sortGrades();
+            sum += a.getGrade(j);
             try {
-                if (a.grade[j] < 1 || a.grade[j] > 10 || a.examGrade < 1 || a.examGrade > 10) {
+                if (a.getGrade(j) < 1 || a.getGrade(j) > 10 || a.getExamGrade() < 1 || a.getExamGrade() > 10) {
                     throw std::exception("Ivestas netinkamas pazymys...");
                 }
             }
@@ -60,20 +60,20 @@ void sortLosersAndWinnersDeque(string fileRead, string fileSortLosers, string fi
                 std::exit(EXIT_FAILURE);
             }
         }
-        int gradeNr = a.numOfGrades - 1;
+        int gradeNr = a.getNumOfGrades() - 1;
         vid = (double)sum / gradeNr;
 
-        a.final = 0.4 * vid + a.examFinal;
+        a.setFinal(0.4 * vid + a.getExamFinal());
 
         sum = 0;
 
-        if (a.numOfGrades % 2 == 0) {
-            a.median = (a.grade[a.numOfGrades / 2] + a.grade[(a.numOfGrades / 2) - 1]) / 2.00;
+        if (a.getNumOfGrades() % 2 == 0) {
+            a.setMedian((a.getGrade(a.getNumOfGrades() / 2) + a.getGrade((a.getNumOfGrades() / 2) - 1)) / 2.00);
         }
         else {
-            a.median = a.grade[a.numOfGrades / 2];
+            a.setMedian(a.getGrade(a.getNumOfGrades() / 2));
         }
-        a.medFinal = (0.4 * a.median) + (0.6 * a.examGrade);
+        a.setMedFinal((0.4 * a.getMedian()) + (0.6 * a.getExamGrade()));
     }
 
     //strategy 1

@@ -44,13 +44,52 @@ using std::deque;
 using std::list;
 using std::find_if;
 
-struct Student {
-    string name, surname;
-    int numOfGrades;
-    float final;
-    float examFinal;
-    float medFinal;
-    float median = 0;
-    int examGrade;
-    vector<int> grade;
+//Student class
+
+class Student {
+private:
+	string name;
+	string surname;
+	float examFinal;
+	int examGrade;
+	int numOfGrades;
+	float final;
+	float median = 0;
+	float medFinal;
+	vector<int> grade;
+public:
+	//getters
+
+	string getName() const { return name; } 
+	string getSurname() const { return surname; } 
+	float getExamFinal() const { return examFinal; } 
+	int getExamGrade() const { return examGrade; }
+	int getNumOfGrades() const { return numOfGrades; }
+	float getFinal() const { return final; }
+	float getMedian() const { return median; }
+	float getMedFinal() const { return medFinal; }
+	int getGrade(int i) const { return grade[i]; }
+	int containerSize() const { return grade.size(); }
+
+	//setters
+
+	void setName(string x) { name = x; }
+	void setSurname(string x) { surname = x; }
+	void setExamFinal(float x) { examFinal = x; }
+	void setExamGrade(int x) { examGrade = x; }
+	void setNumOfGrades(int x) { numOfGrades = x; }
+	void setFinal(float x) { final = x; }
+	void setMedian(float x) { median = x; }
+	void setMedFinal(float x) { medFinal = x; }
+
+	//functions for the 'grade' vector
+
+	void addGrade(int x) {
+		grade.push_back(x);
+		grade.shrink_to_fit();
+	}
+
+	void deleteLastGrade() { grade.pop_back(); }
+
+	void sortGrades() { sort(grade.begin(), grade.end()); }
 };

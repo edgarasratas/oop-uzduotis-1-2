@@ -13,9 +13,7 @@ void nuskaitymasVector(string fileRead, string fileWrite, string fileSortLosers,
     float vid = 0;
     int strategy;
     int index = 0;
-    
-    cout << "Test: " << typeid(student).name() << '\n';
-    
+        
     do {
         index++;
         if (index != 1)
@@ -53,6 +51,8 @@ void nuskaitymasVector(string fileRead, string fileWrite, string fileSortLosers,
     cout << "Failo nuskaitymo trukme: " << diff.count() << " s\n";
     cout << "Skaiciuojama..." << '\n';
 
+    start = std::chrono::high_resolution_clock::now();
+
     diff = std::chrono::high_resolution_clock::now() - start;
 
     string output = "";
@@ -61,22 +61,22 @@ void nuskaitymasVector(string fileRead, string fileWrite, string fileSortLosers,
     ofstream foutLosers(fileSortLosers);
     ofstream foutWinners(fileSortWinners);
 
-
+    
    sort(student.begin(), student.end(), compareByLastName);
-
-
 
     fout << "Pavarde\t\t\t" << "Vardas\t\t" << "Galutinis (Vid)\t\t" << "Galutinis (Med.)\n";
     fout << "------------------------------------------------------------------------\n";
 
     for (auto& a : student) {
-        a.examFinal = 0.6 * a.examGrade;
-        fout << a.surname << a.name << "\t\t";
-        for (int j = 0; j < a.numOfGrades - 1; j++) {
-            sort(a.grade.begin(), a.grade.end() - 1);
-            sum += a.grade[j];
+        a.setExamFinal(0.6 * a.getExamGrade());
+        fout << std::setw(15) << std::left << a.getSurname()
+             << std::setw(15) << std::left << a.getName();
+        for (int j = 0; j < a.getNumOfGrades() - 1; j++) {
+            a.deleteLastGrade();
+            a.sortGrades();
+            sum += a.getGrade(j);
             try {
-                if (a.grade[j] < 1 || a.grade[j] > 10 || a.examGrade < 1 || a.examGrade > 10) {
+                if (a.getGrade(j) < 1 || a.getGrade(j) > 10 || a.getExamGrade() < 1 || a.getExamGrade() > 10) {
                     throw std::exception("Ivestas netinkamas pazymys...");
                 }
             }
@@ -85,23 +85,23 @@ void nuskaitymasVector(string fileRead, string fileWrite, string fileSortLosers,
                 std::exit(EXIT_FAILURE);
             }
         }
-        int gradeNr = a.numOfGrades - 1;
+        int gradeNr = a.getNumOfGrades() - 1;
         vid = (double)sum / gradeNr;
 
-        a.final = 0.4 * vid + a.examFinal;
+        a.setFinal(0.4 * vid + a.getExamFinal());
 
         sum = 0;
         if (gradeNr % 2 == 0) {
-            a.median = (a.grade[(gradeNr - 1) / 2]
-                + a.grade[gradeNr / 2]) / 2.0;
+            a.setMedian((a.getGrade((gradeNr - 1) / 2)
+                + a.getGrade(gradeNr / 2)) / 2.0);
         }
         else {
-            a.median = a.grade[gradeNr / 2];
+            a.setMedian(a.getGrade(gradeNr / 2));
         }
-        a.medFinal = (0.4 * a.median) + (0.6 * a.examGrade);
-        fout << std::setw(15) << std::left << fixed << std::setprecision(2) << a.final;
+        a.setMedFinal((0.4 * a.getMedian()) + (0.6 * a.getExamGrade()));
+        fout << std::setw(15) << std::left << fixed << std::setprecision(2) << a.getFinal();
 
-        fout << std::setw(15) << std::left << fixed << std::setprecision(2) << a.medFinal << '\n';
+        fout << std::setw(15) << std::left << fixed << std::setprecision(2) << a.getMedFinal() << '\n';
     }
 
     diff = std::chrono::high_resolution_clock::now() - start;
