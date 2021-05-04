@@ -233,7 +233,7 @@ Taip pat programos sparta patikrinta panaudojant skirtingas optimizavimo vėliav
 |      Deque          |         0.104889               |         1.53348            |        8.51819           |       104.493           |
 |      List           |         0.0975132              |         1.45929            |        7.96549           |       96.8712           |
 
-                                                                  O3
+                                                                  Ox
                                                                   
 *Visas laikas*
 |   Konteineris       |         10000                  |         100000             |        1000000           |       10000000           |
