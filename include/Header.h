@@ -7,6 +7,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
+#pragma once
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <string>
+#include <algorithm>
+#include <stdio.h>
+#include <stdlib.h>
+#include <vector>
 #include <deque>
 #include <list>
 #include <iterator>

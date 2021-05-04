@@ -3,11 +3,7 @@
 
 void nuskaitymasList(string fileRead, string fileWrite, string fileSortLosers, string fileSortWinners, list<Student>& studentL) {
     string eil;
-    deque<string> myDeque;
     stringstream my_buffer;
-    stringstream buffer2;
-    Student temp;
-    int temp2;
     int sum = 0;
     float vid = 0;
     int strategy;
@@ -50,38 +46,9 @@ void nuskaitymasList(string fileRead, string fileWrite, string fileSortLosers, s
     cout << "Failo nuskaitymo trukme: " << diff.count() << " s\n";
     cout << "Skaiciuojama..." << '\n';
 
-    start = std::chrono::high_resolution_clock::now();
-    while (my_buffer) {
-        if (!my_buffer.eof()) {
-            getline(my_buffer, eil);
-
-            buffer2 << eil;
-
-            buffer2 >> temp.name >> temp.surname;
-            while (!buffer2.eof()) {
-                buffer2 >> temp2;
-                temp.grade.push_back(temp2);
-            }
-            buffer2.clear();
-            temp.examGrade = temp.grade[temp.grade.size() - 1];
-            temp.grade.pop_back();
-            temp.grade.shrink_to_fit();
-            temp.numOfGrades = temp.grade.size();
-            studentL.push_back(temp);
-            temp = {};
-        }
-        else {
-            break;
-        }
-    }
-    my_buffer.clear();
+    readValuesList(studentL, fileRead, my_buffer);
 
     diff = std::chrono::high_resolution_clock::now() - start;
-
-    string output = "";
-
-    for (string& a : myDeque) (a.compare(*myDeque.rbegin()) != 0) ? output += a + "\n" : output += a;
-    myDeque.clear();
 
     ofstream fout(fileWrite);
     ofstream foutLosers(fileSortLosers);
@@ -115,19 +82,19 @@ void nuskaitymasList(string fileRead, string fileWrite, string fileSortLosers, s
 
         sum = 0;
 
-        if (student.numOfGrades % 2 == 0) {
-            student.median = (student.grade[student.numOfGrades / 2] + student.grade[(student.numOfGrades / 2) - 1]) / 2.00;
+        if (gradeNr % 2 == 0) {
+            student.median = (student.grade[gradeNr / 2] + student.grade[(gradeNr / 2) - 1]) / 2.00;
         }
         else {
-            student.median = student.grade[student.numOfGrades / 2];
+            student.median = student.grade[gradeNr / 2];
         }
         student.medFinal = (0.4 * student.median) + (0.6 * student.examGrade);
-        fout << fixed << setprecision(2) << student.final;
+        fout << fixed << std::setprecision(2) << student.final;
 
         fout.fill(' ');
         fout.width(20);
 
-        fout << fixed << setprecision(2) << student.medFinal << '\n';
+        fout << fixed << std::setprecision(2) << student.medFinal << '\n';
     }
 
     diff = std::chrono::high_resolution_clock::now() - start;
@@ -142,13 +109,13 @@ void nuskaitymasList(string fileRead, string fileWrite, string fileSortLosers, s
             foutLosers << student.name << string(16 - student.name.length(), ' ') << student.surname << string(16 - student.surname.length(), ' ');
             foutLosers.fill(' ');
             foutLosers.width(10);
-            foutLosers << fixed << setprecision(2) << student.final << '\n';
+            foutLosers << fixed << std::setprecision(2) << student.final << '\n';
         }
         else if (student.final >= 5) {
             foutWinners << student.name << string(16 - student.surname.length(), ' ') << student.surname << string(16 - student.surname.length(), ' ');
             foutWinners.fill(' ');
             foutWinners.width(10);
-            foutWinners << fixed << setprecision(2) << student.final << '\n';
+            foutWinners << fixed << std::setprecision(2) << student.final << '\n';
         }
     }
     fin.close();

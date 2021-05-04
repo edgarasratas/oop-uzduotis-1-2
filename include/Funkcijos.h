@@ -17,7 +17,6 @@ int createDir(string folderName);
 
 bool compareByLastName(const Student& a, const Student& b);
 
-bool sortBadStudents(const Student& a, const Student& b);
 bool isBad(const Student& a);
 
 void strategyOneV(vector<Student>& student, vector<Student>& losers, vector<Student>& winners, string fileSortLosers, string fileSortWinners);
@@ -26,3 +25,7 @@ void strategyOneD(deque<Student>& studentD, deque<Student>& losers, deque<Studen
 void strategyTwoD(deque<Student>& studentD, deque<Student>& losers, string fileSortLosers, string fileSortWinners);
 void strategyOneL(list<Student>& studentL, list<Student>& losers, list<Student>& winners, string fileSortLosers, string fileSortWinners);
 void strategyTwoL(list<Student>& studentL, list<Student>& losers, string fileSortLosers, string fileSortWinners);
+
+void readValuesVector(vector<Student>& studentD, string fileRead, stringstream& my_buffer);
+void readValuesDeque(deque<Student>& studentD, string fileRead, stringstream& my_buffer);
+void readValuesList(list<Student>& studentL, string fileRead, stringstream& my_buffer);
