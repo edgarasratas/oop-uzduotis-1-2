@@ -126,7 +126,7 @@ void skaiciavimas() {
                 sort(student[i].grade.begin(), student[i].grade.end());
 
                 if (student[i].numOfGrades % 2 == 0) {
-                    student[i].median = (student[i].grade[student[i].numOfGrades / 2] + student[i].grade[(student[i].numOfGrades / 2) - 1]) / 2.00;
+                    student[i].median = (student[i].grade[student[i].numOfGrades / 2] + student[i].grade[(student[i].numOfGrades / 2) - 1]) / 2.0;
                 }
                 else {
                     student[i].median = student[i].grade[student[i].numOfGrades / 2];

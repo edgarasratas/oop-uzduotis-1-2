@@ -11,7 +11,7 @@ void sortLosersAndWinnersVector(string fileRead, string fileSortLosers, string f
     int sum{ 0 };
     float vid;
     int index = 0;
-
+    
     auto start = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff;
 
@@ -35,45 +35,23 @@ void sortLosersAndWinnersVector(string fileRead, string fileSortLosers, string f
     diff = std::chrono::high_resolution_clock::now() - start;
     cout << "Failo nuskaitymo trukme: " << diff.count() << "s\n";
 
+    readValuesVector(student, fileRead, buffer);
+
     start = std::chrono::high_resolution_clock::now();
 
     student.clear();
-    while (buffer) {
-        if (!buffer.eof()) {
-            getline(buffer, eil);
-
-            buffer2 << eil;
-
-            buffer2 >> temp.name >> temp.surname;
-            while (!buffer2.eof()) {
-                buffer2 >> temp2;
-                temp.grade.push_back(temp2);
-            }
-            buffer2.clear();
-            temp.examGrade = temp.grade[temp.grade.size() - 1];
-            temp.grade.pop_back();
-            temp.grade.shrink_to_fit();
-            temp.numOfGrades = temp.grade.size();
-            student.push_back(temp);
-            temp = {};
-        }
-        else {
-            break;
-        }
-    }
-    buffer.clear();
 
     ofstream foutLosers(fileSortLosers);
     ofstream foutWinners(fileSortWinners);
 
-    for (int i = 0; i < student.size(); i++) {
-        student[i].examFinal = 0.6 * student[i].examGrade;
+    for (auto &a : student) {
+        a.examFinal = 0.6 * a.examGrade;
 
-        for (int j = 0; j < student[i].numOfGrades - 1; j++) {
-            sort(student[i].grade.begin(), student[i].grade.end() - 1);
-            sum += student[i].grade[j];
+        for (int j = 0; j < a.numOfGrades - 1; j++) {
+            sort(a.grade.begin(), a.grade.end() - 1);
+            sum += a.grade[j];
             try {
-                if (student[i].grade[j] < 1 || student[i].grade[j] > 10 || student[i].examGrade < 1 || student[i].examGrade > 10) {
+                if (a.grade[j] < 1 || a.grade[j] > 10 || a.examGrade < 1 || a.examGrade > 10) {
                     throw std::exception("Ivestas netinkamas pazymys...");
                 }
             }
@@ -82,20 +60,20 @@ void sortLosersAndWinnersVector(string fileRead, string fileSortLosers, string f
                 std::exit(EXIT_FAILURE);
             }
         }
-        int gradeNr = student[i].numOfGrades - 1;
+        int gradeNr = a.numOfGrades - 1;
         vid = (double)sum / gradeNr;
 
-        student[i].final = 0.4 * vid + student[i].examFinal;
+        a.final = 0.4 * vid + a.examFinal;
 
         sum = 0;
 
-        if (student[i].numOfGrades % 2 == 0) {
-            student[i].median = (student[i].grade[student[i].numOfGrades / 2] + student[i].grade[(student[i].numOfGrades / 2) - 1]) / 2.00;
+        if (a.numOfGrades % 2 == 0) {
+            a.median = (a.grade[a.numOfGrades / 2] + a.grade[(a.numOfGrades / 2) - 1]) / 2.00;
         }
         else {
-            student[i].median = student[i].grade[student[i].numOfGrades / 2];
+            a.median = a.grade[a.numOfGrades / 2];
         }
-        student[i].medFinal = (0.4 * student[i].median) + (0.6 * student[i].examGrade);
+        a.medFinal = (0.4 * a.median) + (0.6 * a.examGrade);
     }
 
     //strategy 1

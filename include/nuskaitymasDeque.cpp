@@ -3,13 +3,10 @@
 
 void nuskaitymasDeque(string fileRead, string fileWrite, string fileSortLosers, string fileSortWinners, deque<Student>& studentD) {
     string eil;
+    stringstream my_buffer;
     deque<string> myDeque;
     deque<Student> losers;
     deque<Student> winners;
-    stringstream my_buffer;
-    stringstream buffer2;
-    Student temp;
-    int temp2;
     int sum = 0;
     float vid = 0;
     int strategy;
@@ -33,6 +30,9 @@ void nuskaitymasDeque(string fileRead, string fileWrite, string fileSortLosers, 
 
     ifstream fin(fileRead, std::ios::binary);
 
+    getline(fin, eil);
+    my_buffer << fin.rdbuf();
+
     try {
         if (fin.fail()) {
             throw std::exception("Tokio failo nera...");
@@ -43,41 +43,13 @@ void nuskaitymasDeque(string fileRead, string fileWrite, string fileSortLosers, 
         std::exit(EXIT_FAILURE);
     }
 
-    cout << "Failas skaitomas..." << '\n';
-
-    getline(fin, eil);
-    my_buffer << fin.rdbuf();
-
     std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start;
     cout << "Failo nuskaitymo trukme: " << diff.count() << " s\n";
     cout << "Skaiciuojama..." << '\n';
 
     start = std::chrono::high_resolution_clock::now();
 
-    while (my_buffer) {
-        if (!my_buffer.eof()) {
-            getline(my_buffer, eil);
-
-            buffer2 << eil;
-
-            buffer2 >> temp.name >> temp.surname;
-            while (!buffer2.eof()) {
-                buffer2 >> temp2;
-                temp.grade.push_back(temp2);
-            }
-            buffer2.clear();
-            temp.examGrade = temp.grade[temp.grade.size() - 1];
-            temp.grade.pop_back();
-            temp.grade.shrink_to_fit();
-            temp.numOfGrades = temp.grade.size();
-            studentD.push_back(temp);
-            temp = {};
-        }
-        else {
-            break;
-        }
-    }
-    my_buffer.clear();
+    readValuesDeque(studentD, fileRead, my_buffer);
 
     diff = std::chrono::high_resolution_clock::now() - start;
 
@@ -94,15 +66,16 @@ void nuskaitymasDeque(string fileRead, string fileWrite, string fileSortLosers, 
 
     fout << "Pavarde\t\t\t" << "Vardas\t\t" << "Galutinis (Vid)\t\t" << "Galutinis (Med.)\n";
     fout << "------------------------------------------------------------------------\n";
-    for (int i = 0; i < studentD.size(); i++) {
-        studentD[i].examFinal = 0.6 * studentD[i].examGrade;
-        fout << studentD[i].surname << string(16 - studentD.at(i).surname.length(), ' ') << studentD[i].name << string(13 - studentD.at(i).name.length(), ' ') << "\t\t";
+    for (auto &a : studentD) {
+        a.examFinal = 0.6 * a.examGrade;
+        fout << std::setw(15) << std::left << a.surname
+             << std::setw(15) << std::left << a.name;
 
-        for (int j = 0; j < studentD[i].numOfGrades - 1; j++) {
-            sort(studentD[i].grade.begin(), studentD[i].grade.end() - 1);
-            sum += studentD[i].grade[j];
+        for (int j = 0; j < a.numOfGrades - 1; j++) {
+            sort(a.grade.begin(), a.grade.end() - 1);
+            sum += a.grade[j];
             try {
-                if (studentD[i].grade[j] < 1 || studentD[i].grade[j] > 10 || studentD[i].examGrade < 1 || studentD[i].examGrade > 10) {
+                if (a.grade[j] < 1 || a.grade[j] > 10 || a.examGrade < 1 || a.examGrade > 10) {
                     throw std::exception("Ivestas netinkamas pazymys...");
                 }
             }
@@ -111,26 +84,26 @@ void nuskaitymasDeque(string fileRead, string fileWrite, string fileSortLosers, 
                 std::exit(EXIT_FAILURE);
             }
         }
-        int gradeNr = studentD[i].numOfGrades - 1;
+        int gradeNr = a.numOfGrades - 1;
         vid = (double)sum / gradeNr;
 
-        studentD[i].final = 0.4 * vid + studentD[i].examFinal;
+        a.final = 0.4 * vid + a.examFinal;
 
         sum = 0;
 
-        if (studentD[i].numOfGrades % 2 == 0) {
-            studentD[i].median = (studentD[i].grade[studentD[i].numOfGrades / 2] + studentD[i].grade[(studentD[i].numOfGrades / 2) - 1]) / 2.00;
+        if (gradeNr % 2 == 0) {
+            a.median = (a.grade[gradeNr / 2] + a.grade[(gradeNr / 2) - 1]) / 2.00;
         }
         else {
-            studentD[i].median = studentD[i].grade[studentD[i].numOfGrades / 2];
+            a.median = a.grade[gradeNr / 2];
         }
-        studentD[i].medFinal = (0.4 * studentD[i].median) + (0.6 * studentD[i].examGrade);
-        fout << fixed << setprecision(2) << studentD[i].final;
+        a.medFinal = (0.4 * a.median) + (0.6 * a.examGrade);
+        fout << fixed << std::setprecision(2) << a.final;
 
         fout.fill(' ');
         fout.width(20);
 
-        fout << fixed << setprecision(2) << studentD[i].medFinal << '\n';
+        fout << fixed << std::setprecision(2) << a.medFinal << '\n';
     }
 
     diff = std::chrono::high_resolution_clock::now() - start;

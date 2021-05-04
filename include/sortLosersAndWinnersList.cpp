@@ -1,13 +1,5 @@
 #include "Funkcijos.h"
 
-bool compareByFinalGrade(const Student& a, const Student& b) {
-    return a.final < b.final;
-}
-
-bool isGood(const Student& a) {
-    return a.final >= 5;
-}
-
 void sortLosersAndWinnersList(string fileRead, string fileSortLosers, string fileSortWinners, list<Student>& studentL, int strategy) {
     stringstream buffer;
     stringstream buffer2;
@@ -27,6 +19,9 @@ void sortLosersAndWinnersList(string fileRead, string fileSortLosers, string fil
 
     ifstream fin(fileRead, std::ios::binary);
 
+    getline(fin, eil);
+    buffer << fin.rdbuf();
+
     try {
         if (fin.fail()) {
             throw std::exception("Tokio failo nera...");
@@ -37,40 +32,12 @@ void sortLosersAndWinnersList(string fileRead, string fileSortLosers, string fil
         std::exit(EXIT_FAILURE);
     }
 
-    getline(fin, eil);
-    buffer << fin.rdbuf();
-
     diff = std::chrono::high_resolution_clock::now() - start;
     cout << "Failo nuskaitymo trukme: " << diff.count() << "s\n";
 
     start = std::chrono::high_resolution_clock::now();
 
-    studentL.clear();
-    while (buffer) {
-        if (!buffer.eof()) {
-            getline(buffer, eil);
-
-            buffer2 << eil;
-
-            buffer2 >> temp.name >> temp.surname;
-            while (!buffer2.eof()) {
-                buffer2 >> temp2;
-                temp.grade.push_back(temp2);
-            }
-            buffer2.clear();
-            temp.examGrade = temp.grade[temp.grade.size() - 1];
-            temp.grade.pop_back();
-            temp.grade.shrink_to_fit();
-            temp.numOfGrades = temp.grade.size();
-            studentL.push_back(temp);
-
-            temp = {};
-        }
-        else {
-            break;
-        }
-    }
-    buffer.clear();
+    readValuesList(studentL, fileRead, buffer);
 
     ofstream foutLosers(fileSortLosers);
     ofstream foutWinners(fileSortWinners);
