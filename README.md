@@ -247,5 +247,5 @@ Taip pat programos sparta patikrinta panaudojant skirtingas optimizavimo vėliav
 Programoje realizuota "Rule of Three" 'Student' klasei:
 * Destructor
 * Copy constructor
-* Copy assignmet operator
+* Copy assignment operator
 -----------------------------------------------------------------
