@@ -244,7 +244,7 @@ Taip pat programos sparta patikrinta panaudojant skirtingas optimizavimo vėliav
 -----------------------------------------------------------------
 [v1.2](https://github.com/edgarasratas/oop-uzduotis-1-2/tree/v1.2)
 -----------------------------------------------------------------
-Programoje realizuota "Rule of three" 'Student' klasei:
+Programoje realizuota "Rule of Three" 'Student' klasei:
 * Destructor
 * Copy constructor
 * Copy assignmet operator
