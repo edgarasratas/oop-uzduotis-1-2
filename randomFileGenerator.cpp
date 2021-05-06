@@ -1,4 +1,6 @@
-#include "Funkcijos.h"
+#include "Student.h"
+#include "createDir.h"
+#include "randomFileGenerator.h"
 
 const int gradeNr = 15;
 
@@ -13,7 +15,7 @@ void randomFileGenerator(string dir, string fileWrite, int studentSize, vector<S
     ofstream fout(dir + fileWrite);
 
     fout << std::setw(15) << std::left << "Vardas"
-         << std::setw(15) << std::left << "Pavarde";
+        << std::setw(15) << std::left << "Pavarde";
 
     for (int i = 0; i < gradeNr + 1; i++)
     {
@@ -28,7 +30,7 @@ void randomFileGenerator(string dir, string fileWrite, int studentSize, vector<S
         }
     }
 
-    srand(time(NULL));
+    srand((unsigned int)time(NULL));
 
     for (int i = 0; i < studentSize; i++)
     {
@@ -36,7 +38,7 @@ void randomFileGenerator(string dir, string fileWrite, int studentSize, vector<S
         string surname = "Pavarde" + std::to_string(i + 1);
 
         fout << std::setw(15) << std::left << name
-             << std::setw(15) << std::left << surname;
+            << std::setw(15) << std::left << surname;
 
         for (int j = 0; j < gradeNr; j++)
         {
@@ -54,5 +56,5 @@ void randomFileGenerator(string dir, string fileWrite, int studentSize, vector<S
     }
     std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start;
     cout << "Faila sugeneravo per " << diff.count() << "s\n"
-         << "Sugeneruotas failas '" << fileWrite << "' 'Generated text files' folderyje\n";
+        << "Sugeneruotas failas '" << fileWrite << "' 'Generated text files' folderyje\n";
 }

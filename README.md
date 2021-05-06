@@ -241,3 +241,11 @@ Taip pat programos sparta patikrinta panaudojant skirtingas optimizavimo vėliav
 |      Vector         |         0.102592               |         1.54038            |        8.34943           |       102.358           |
 |      Deque          |         0.103584               |         1.52892            |        8.68615           |       104.61            |
 |      List           |         0.0962083              |         1.49566            |        7.86732           |       141.352           |
+-----------------------------------------------------------------
+[v1.2](https://github.com/edgarasratas/oop-uzduotis-1-2/tree/v1.2)
+-----------------------------------------------------------------
+Programoje realizuota "Rule of Three" 'Student' klasei:
+* Destructor
+* Copy constructor
+* Copy assignment operator
+-----------------------------------------------------------------

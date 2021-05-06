@@ -1,4 +1,5 @@
-#include "Funkcijos.h"
+#include "Student.h"
+#include "createDir.h"
 
 int createDir(string folderName) {
     char currentPath[FILENAME_MAX];
