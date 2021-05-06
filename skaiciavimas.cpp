@@ -1,25 +1,27 @@
-#include "Funkcijos.h"
+#include "Student.h"
+#include "skaiciavimas.h"
 
 void skaiciavimas() {
     float sum{ 0 };
-    float average;
     int n;
     string input;
-    int inputInt;
     int randomNumber, randomExamGrade;
     int temp;
     int examGrade;
     int gradeNr;
+    string name;
+    string surname;
     vector<Student> student;
+    int index = 0;
 
-    cout << "Iveskite reikiama studentu skaiciu: \n";
-    cin >> n;
+    do {
+        index++;
+        if (index != 1)
+            cout << "Klaidingas ivedimas. Studentu skaicius turi buti bent 1. Bandykite dar karta\n";
 
-    if (n >= 1) {
-    }
-    else {
-        cout << "Klaidingas ivedimas. Studentu skaicius turi buti bent 1. Bandykite dar karta\n";
-    }
+        cout << "Iveskite reikiama studentu skaiciu: \n";
+        cin >> n;
+    } while (n < 1);
 
     cout << '\n';
 
@@ -28,10 +30,14 @@ void skaiciavimas() {
 
         cout << i + 1 << " studentas\n";
         cout << "Iveskite studento varda: ";
-        cin >> student[i].getName();
+        cin >> name;
+
+        student[i].setName(name);
 
         cout << "Iveskite studento pavarde: ";
-        cin >> student[i].getSurname();
+        cin >> surname;
+
+        student[i].setSurname(surname);
 
         cout << "Iveskite studento nd pazymiu kieki: ";
         cin >> gradeNr;
@@ -65,7 +71,7 @@ void skaiciavimas() {
                 break;
             }
             else if (input == "N" || input == "n") {
-                srand(time(NULL));
+                srand((unsigned int)time(NULL));
 
                 randomExamGrade = rand() % 10 + 1;
 
@@ -96,19 +102,19 @@ void skaiciavimas() {
             }
         } while (input != "Y" || input != "y" || input != "N" || input != "n");
 
-    student[i].setExamFinal(0.6 * student[i].getExamGrade());
+        student[i].setExamFinal((float)0.6 * student[i].getExamGrade());
 
-    for (int j = 1; j < student[i].getNumOfGrades(); j++) {
-        student[i].setFinal(0.4 * (sum / (student[i].getNumOfGrades())) + student[i].getExamFinal());
-    }
+        for (int j = 1; j < student[i].getNumOfGrades(); j++) {
+            student[i].setFinal((float)0.4 * (sum / (student[i].getNumOfGrades())) + student[i].getExamFinal());
+        }
 
-    sum = 0;
+        sum = 0;
 
-    //sort(student[i].getGrade().begin(), student[i].getGrade().end());
+        //sort(student[i].getGrade().begin(), student[i].getGrade().end());
 
-    for (int j = 0; j < student[i].getNumOfGrades(); j++) {
-    }
-    cout << '\n';
+        for (int j = 0; j < student[i].getNumOfGrades(); j++) {
+        }
+        cout << '\n';
     }
     cout << "Ar norite, kad atspausdintu galutinio pazymio vidurki (y) ar mediana? (n)\n";
     cin >> input;
@@ -121,8 +127,8 @@ void skaiciavimas() {
 
             for (int i = 0; i < n; i++) {
                 cout << std::setw(15) << std::left << student[i].getName()
-                     << std::setw(15) << std::left << student[i].getSurname()
-                     << std::setw(15) << std::left << student[i].getFinal();
+                    << std::setw(15) << std::left << student[i].getSurname()
+                    << std::setw(15) << std::left << student[i].getFinal() << '\n';
             }
             break;
         }
@@ -134,12 +140,12 @@ void skaiciavimas() {
                 student[i].sortGrades();
 
                 if (student[i].getNumOfGrades() % 2 == 0) {
-                    student[i].setMedian((student[i].getGrade(student[i].getNumOfGrades() / 2) + student[i].getGrade((student[i].getNumOfGrades() / 2) - 1)) / 2.0);
+                    student[i].setMedian((student[i].getGrade(student[i].getNumOfGrades() / 2) + student[i].getGrade((student[i].getNumOfGrades() / 2) - 1)) / (float)2.0);
                 }
                 else {
-                    student[i].setMedian(student[i].getGrade(student[i].getNumOfGrades() / 2));
+                    student[i].setMedian((float)student[i].getGrade(student[i].getNumOfGrades() / 2));
                 }
-                student[i].setMedFinal((0.4 * student[i].getMedian()) + (0.6 * student[i].getExamGrade()));
+                student[i].setMedFinal(((float)0.4 * student[i].getMedian()) + ((float)0.6 * student[i].getExamGrade()));
                 cout << std::setw(15) << std::left << student[i].getName()
                     << std::setw(15) << std::left << student[i].getSurname()
                     << std::setw(15) << std::left << student[i].getMedFinal();
