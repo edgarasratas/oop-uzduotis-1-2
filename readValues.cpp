@@ -87,6 +87,7 @@ void readValues(vector<Student>& studentV, string fileRead, stringstream& my_buf
     int tempGrade;
     string name;
     string surname;
+    int k = 0;
     
     while (my_buffer)
     {
@@ -95,8 +96,6 @@ void readValues(vector<Student>& studentV, string fileRead, stringstream& my_buf
             getline(my_buffer, eil);
             buffer2 << eil;
             buffer2 >> name >> surname;
-            temp.setName(name);
-            temp.setSurname(surname);
             while (!buffer2.eof())
             {
                 buffer2 >> tempGrade;
@@ -111,6 +110,9 @@ void readValues(vector<Student>& studentV, string fileRead, stringstream& my_buf
 
             temp.setNumOfGrades((int)temp.containerSize());
             studentV.push_back(temp);
+            studentV[k].setName(name);
+            studentV[k].setSurname(surname);
+            k++;
             temp = {};
         }
         else {

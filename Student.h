@@ -43,54 +43,66 @@ using std::deque;
 using std::list;
 using std::find_if;
 
+//Human class
+
+class Human {
+protected:
+	string m_name;
+	string m_surname;
+public:
+	
+	virtual ~Human() = 0;
+
+	virtual const string& getName() const { return m_name; }
+	virtual const string& getSurname() const { return m_surname; }
+
+	virtual void setName(string x) { this->m_name = x; }
+	virtual void setSurname(string x) { this->m_surname = x; }
+};
+
 //Student class
 
-class Student {
+class Student: public Human {
 private:
-	string name;
-	string surname;
-	float examFinal = 0;
-	int examGrade = 0;
-	int numOfGrades = 0;
-	float final = 0;
-	float median = 0;
-	float medFinal = 0;
-	vector<int> grade;
+	float m_examFinal = 0;
+	int m_examGrade = 0;
+	int m_numOfGrades = 0;
+	float m_final = 0;
+	float m_median = 0;
+	float m_medFinal = 0;
+	vector<int> m_grade;
 public:
+
 	//getters
 
-	string getName() const { return name; }
-	string getSurname() const { return surname; }
-	float getExamFinal() const { return examFinal; }
-	int getExamGrade() const { return examGrade; }
-	int getNumOfGrades() const { return numOfGrades; }
-	float getFinal() const { return final; }
-	float getMedian() const { return median; }
-	float getMedFinal() const { return medFinal; }
-	int getGrade(int i) const { return grade[i]; }
-	size_t containerSize() const { return grade.size(); }
+	float getExamFinal() const { return m_examFinal; }
+	int getExamGrade() const { return m_examGrade; }
+	int getNumOfGrades() const { return m_numOfGrades; }
+	float getFinal() const { return m_final; }
+	float getMedian() const { return m_median; }
+	float getMedFinal() const { return m_medFinal; }
+	int getGrade(int i) const { return m_grade[i]; }
+	size_t containerSize() const { return m_grade.size(); }
 
 	//setters
 
-	void setName(string x) { this->name = x; }
-	void setSurname(string x) { this->surname = x; }
-	void setExamFinal(float x) { this->examFinal = x; }
-	void setExamGrade(int x) { this->examGrade = x; }
-	void setNumOfGrades(int x) { this->numOfGrades = x; }
-	void setFinal(float x) { this->final = x; }
-	void setMedian(float x) { this->median = x; }
-	void setMedFinal(float x) { this->medFinal = x; }
+	void setExamFinal(float x) { this->m_examFinal = x; }
+	void setExamGrade(int x) { this->m_examGrade = x; }
+	void setNumOfGrades(int x) { this->m_numOfGrades = x; }
+	void setFinal(float x) { this->m_final = x; }
+	void setMedian(float x) { this->m_median = x; }
+	void setMedFinal(float x) { this->m_medFinal = x; }
 
 	//functions for the 'grade' vector
 
 	void addGrade(int x) {
-		grade.push_back(x);
-		grade.shrink_to_fit();
+		m_grade.push_back(x);
+		//m_grade.shrink_to_fit();
 	}
 
-	void deleteLastGrade() { grade.pop_back(); }
+	void deleteLastGrade() { m_grade.pop_back(); }
 
-	void sortGrades() { sort(grade.begin(), grade.end()); }
+	void sortGrades() { sort(m_grade.begin(), m_grade.end()); }
 	
 	// Destructor
 	~Student() = default;
