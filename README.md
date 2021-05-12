@@ -249,3 +249,6 @@ Programoje realizuota "Rule of Three" 'Student' klasei:
 * Copy constructor
 * Copy assignment operator
 -----------------------------------------------------------------
+[v1.5](https://github.com/edgarasratas/oop-uzduotis-1-2/tree/v1.5)
+-----------------------------------------------------------------
+Programoje sudaryta papildoma abstrakti *Human* bazinė klasė, iš kurios *Student* klasė paveldi.
