@@ -2,18 +2,6 @@
 -----------------------------------------------------------------
 PROGRAMOS PALEIDIMO INSTRUKCIJA
 -----------------------------------------------------------------
-1. Atsisiųskite naujausią versiją iš "Releases" aplanko
-2. Paleiskite *Setup.msi* diegimo failą
-* ![image](https://user-images.githubusercontent.com/73912309/118680161-292c8f00-b807-11eb-8214-b1719caceeea.png)
-3. Paspauskite "Next"
-* ![image](https://user-images.githubusercontent.com/73912309/118680236-3c3f5f00-b807-11eb-8f68-9b3c8254c755.png)
-4. Pasirinkite diegimo direktoriją bei ar Jūs norite šią programą suinstaliuoti tik sau patiems, ar visiems besinaudojantiems kompiuteriu. Toliau paspauskite "Next"
-* ![image](https://user-images.githubusercontent.com/73912309/118680398-5ed17800-b807-11eb-844a-2d47b43ee644.png)
-5. Paspauskite "Next" dar kartą
-* ![image](https://user-images.githubusercontent.com/73912309/118680503-76a8fc00-b807-11eb-84cf-b63022295aff.png)
-6. Instaliacija baigta. Paspauskite "Close". Galite laisvai naudotis programa :)
-* ![image](https://user-images.githubusercontent.com/73912309/118680645-96402480-b807-11eb-8efe-baa6fdc66991.png)
------------------------------------------------------------------
 ATNAUJINIMŲ ISTORIJA
 -----------------------------------------------------------------
 [v0.1](https://github.com/edgarasratas/oop-uzduotis-1/tree/v0.1)
