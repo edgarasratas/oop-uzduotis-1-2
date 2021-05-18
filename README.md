@@ -252,3 +252,9 @@ Programoje realizuota "Rule of Three" 'Student' klasei:
 [v1.5](https://github.com/edgarasratas/oop-uzduotis-1-2/tree/v1.5)
 -----------------------------------------------------------------
 Programoje sudaryta papildoma abstrakti *Human* bazinė klasė, iš kurios *Student* klasė paveldi.
+-----------------------------------------------------------------
+[v2.0](https://github.com/edgarasratas/oop-uzduotis-1-2/tree/v2.0)
+-----------------------------------------------------------------
+* Programoje panaudojami keli Unit testai ištirti klases bei jų narius. Tam atlikti buvo naudojamas C++ framework'as *GoogleTest*
+* Sukurta dokumentacija pasinaudojant *Doxygen* projekto pagrindu
+* Sukurtas *Setup.msi* diegimo failas programos instaliavimui
