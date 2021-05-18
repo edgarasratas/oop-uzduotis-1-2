@@ -2,7 +2,7 @@
 -----------------------------------------------------------------
 PROGRAMOS PALEIDIMO INSTRUKCIJA
 -----------------------------------------------------------------
-1. Paleiskite *Setup.msi* diegimo failą:
+1. Paleiskite *Setup.msi* diegimo failą
 ![image](https://user-images.githubusercontent.com/73912309/118680161-292c8f00-b807-11eb-8214-b1719caceeea.png)
 2. Paspauskite "Next"
 ![image](https://user-images.githubusercontent.com/73912309/118680236-3c3f5f00-b807-11eb-8f68-9b3c8254c755.png)
