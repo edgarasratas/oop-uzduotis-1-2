@@ -11,7 +11,7 @@ PROGRAMOS PALEIDIMO INSTRUKCIJA
 * ![image](https://user-images.githubusercontent.com/73912309/118680398-5ed17800-b807-11eb-844a-2d47b43ee644.png)
 5. Paspauskite "Next" dar kartą
 * ![image](https://user-images.githubusercontent.com/73912309/118680503-76a8fc00-b807-11eb-84cf-b63022295aff.png)
-6. Instaliacija baigta. Paspauskite "Close". Galite laisvai naudotis programa suinstaliuota Jūsų direktorijoje :)
+6. Instaliacija baigta. Paspauskite "Close". Galite laisvai naudotis programa :)
 * ![image](https://user-images.githubusercontent.com/73912309/118680645-96402480-b807-11eb-8efe-baa6fdc66991.png)
 -----------------------------------------------------------------
 ATNAUJINIMŲ ISTORIJA
