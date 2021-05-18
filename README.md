@@ -2,35 +2,6 @@
 -----------------------------------------------------------------
 PROGRAMOS PALEIDIMO INSTRUKCIJA
 -----------------------------------------------------------------
-1. Paleiskite *Setup.msi* diegimo failą
-* ![image](https://user-images.githubusercontent.com/73912309/118680161-292c8f00-b807-11eb-8214-b1719caceeea.png)
-2. Paspauskite "Next"
-* ![image](https://user-images.githubusercontent.com/73912309/118680236-3c3f5f00-b807-11eb-8f68-9b3c8254c755.png)
-3. Pasirinkite diegimo direktoriją bei ar Jūs norite šią programą suinstaliuoti tik sau patiems, ar visiems besinaudojantiems kompiuteriu. Toliau paspauskite "Next"
-* ![image](https://user-images.githubusercontent.com/73912309/118680398-5ed17800-b807-11eb-844a-2d47b43ee644.png)
-4. Paspauskite "Next" dar kartą
-* ![image](https://user-images.githubusercontent.com/73912309/118680503-76a8fc00-b807-11eb-84cf-b63022295aff.png)
-5. Instaliacija baigta. Paspauskite "Close". Galite laisvai naudotis programa suinstaliuota Jūsų direktorijoje :)
-* ![image](https://user-images.githubusercontent.com/73912309/118680645-96402480-b807-11eb-8efe-baa6fdc66991.png)
------------------------------------------------------------------
-1. Atsisiųskite naujausią versiją iš 'Releases' aplanko.
-2. Išsiarchyvuokite visus failus į norimą direktoriją
-3. Atsisiųskite 'CMake' bei 'CMakeGUI'
-4. Paleiskite "CMakeGUI'
-5. Įveskite direktoriją, kur programa randasi (1) bei kur norėtumėte sukurti 'build' failus (2)
-6. Paspauskite 'Configure'
-7. Kai baigs sukonfigūruoti, paspauskite 'Generate', kad sugeneruotų 'build' failus reikiamoje direktorijoje
-![image](https://user-images.githubusercontent.com/73912309/116253108-dcf6ad80-a778-11eb-9c41-40efd4b8591b.png)
-8. Paleiskite 'main_vector.vcxproj' failą, kad progros kodas pasileistų VS 2019 kompiliatoriuje
-9. Atsidarius VS 2019, dešinėje pusėje paspauskite dešinį pelės mygtuką ant "Solution 'main_vector'" (1), tada 'Properties' (2)
-![image](https://user-images.githubusercontent.com/73912309/116254007-a66d6280-a779-11eb-95a3-d56cf7a53fa5.png)
-10. Pasirinkite 'Single startup project' ir pasirinkite 'main_vector'
-11. Paspauskite 'Apply' ir 'OK'
-![image](https://user-images.githubusercontent.com/73912309/116255082-96a24e00-a77a-11eb-83f7-132943407e16.png)
-12. Galite pasirinkti 'Release' vietoj 'Debug', kad programa sparčiau veiktų
-![image](https://user-images.githubusercontent.com/73912309/116254702-3c08f200-a77a-11eb-89df-76879fef3648.png)
-13. Paleisti programą galite paspaudžius žalią rodyklę viršuje arba paspaudžius CTRL + F5
------------------------------------------------------------------
 ATNAUJINIMŲ ISTORIJA
 -----------------------------------------------------------------
 [v0.1](https://github.com/edgarasratas/oop-uzduotis-1/tree/v0.1)
