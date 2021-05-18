@@ -3,6 +3,7 @@
 #include "randomFileGenerator.h"
 #include "skaiciavimas.h"
 #include "sortLosersAndWinners.h"
+//#include "unitTesting.h"
 
 const int oneK = 1000;
 const int tenK = 10000;
@@ -10,7 +11,7 @@ const int hundredK = 100000;
 const int oneMill = 1000000;
 const int tenMill = 10000000;
 
-int main()
+int main(int argc, char* argv[])
 {
     string input;
     string inputGenerate;
@@ -101,7 +102,6 @@ int main()
                 cout << "Visas sugaistas laikas: " << diff.count() << "s\n";
 
                 system("pause");
-                exit(0);
             }
             else if (inputStudentSize == 2 && inputContainer == 1) {
                 auto start = std::chrono::high_resolution_clock::now();
@@ -113,7 +113,6 @@ int main()
                 cout << "Visas sugaistas laikas: " << diff.count() << "s\n";
 
                 system("pause");
-                exit(0);
             }
             else if (inputStudentSize == 3 && inputContainer == 1) {
                 auto start = std::chrono::high_resolution_clock::now();
@@ -125,7 +124,6 @@ int main()
                 cout << "Visas sugaistas laikas: " << diff.count() << "s\n";
 
                 system("pause");
-                exit(0);
             }
             else if (inputStudentSize == 4 && inputContainer == 1) {
                 auto start = std::chrono::high_resolution_clock::now();
@@ -137,7 +135,6 @@ int main()
                 cout << "Visas sugaistas laikas: " << diff.count() << "s\n";
 
                 system("pause");
-                exit(0);
             }
             else if (inputStudentSize == 5 && inputContainer == 1) {
                 auto start = std::chrono::high_resolution_clock::now();
@@ -149,7 +146,6 @@ int main()
                 cout << "Visas sugaistas laikas: " << diff.count() << "s\n";
 
                 system("pause");
-                exit(0);
             }
             else if (inputStudentSize == 6 && inputContainer == 1) {
                 auto start = std::chrono::high_resolution_clock::now();
@@ -191,7 +187,6 @@ int main()
                 cout << "Visas sugaistas laikas: " << diff.count() << "s\n\n";
 
                 system("pause");
-                exit(0);
             }
             else if (inputStudentSize == 1 && inputContainer == 2) {
                 auto start = std::chrono::high_resolution_clock::now();
@@ -203,7 +198,6 @@ int main()
                 cout << "Visas sugaistas laikas: " << diff.count() << "s\n";
 
                 system("pause");
-                exit(0);
             }
             else if (inputStudentSize == 2 && inputContainer == 2) {
                 auto start = std::chrono::high_resolution_clock::now();
@@ -215,7 +209,6 @@ int main()
                 cout << "Visas sugaistas laikas: " << diff.count() << "s\n";
 
                 system("pause");
-                exit(0);
             }
             else if (inputStudentSize == 3 && inputContainer == 2) {
                 auto start = std::chrono::high_resolution_clock::now();
@@ -227,7 +220,6 @@ int main()
                 cout << "Visas sugaistas laikas: " << diff.count() << "s\n";
 
                 system("pause");
-                exit(0);
             }
             else if (inputStudentSize == 4 && inputContainer == 2) {
                 auto start = std::chrono::high_resolution_clock::now();
@@ -239,7 +231,6 @@ int main()
                 cout << "Visas sugaistas laikas: " << diff.count() << "s\n";
 
                 system("pause");
-                exit(0);
             }
             else if (inputStudentSize == 5 && inputContainer == 2) {
                 auto start = std::chrono::high_resolution_clock::now();
@@ -251,7 +242,6 @@ int main()
                 cout << "Visas sugaistas laikas: " << diff.count() << "s\n";
 
                 system("pause");
-                exit(0);
             }
             else if (inputStudentSize == 6 && inputContainer == 2) {
                 auto start = std::chrono::high_resolution_clock::now();
@@ -293,7 +283,6 @@ int main()
                 cout << "Visas sugaistas laikas: " << diff.count() << "s\n\n";
 
                 system("pause");
-                exit(0);
             }
             else if (inputStudentSize == 1 && inputContainer == 3) {
                 auto start = std::chrono::high_resolution_clock::now();
@@ -305,7 +294,6 @@ int main()
                 cout << "Visas sugaistas laikas: " << diff.count() << "s\n";
 
                 system("pause");
-                exit(0);
             }
             else if (inputStudentSize == 2 && inputContainer == 3) {
                 auto start = std::chrono::high_resolution_clock::now();
@@ -317,7 +305,6 @@ int main()
                 cout << "Visas sugaistas laikas: " << diff.count() << "s\n";
 
                 system("pause");
-                exit(0);
             }
             else if (inputStudentSize == 3 && inputContainer == 3) {
                 auto start = std::chrono::high_resolution_clock::now();
@@ -329,7 +316,6 @@ int main()
                 cout << "Visas sugaistas laikas: " << diff.count() << "s\n";
 
                 system("pause");
-                exit(0);
             }
             else if (inputStudentSize == 4 && inputContainer == 3) {
                 auto start = std::chrono::high_resolution_clock::now();
@@ -341,7 +327,6 @@ int main()
                 cout << "Visas sugaistas laikas: " << diff.count() << "s\n";
 
                 system("pause");
-                exit(0);
             }
             else if (inputStudentSize == 5 && inputContainer == 3) {
                 auto start = std::chrono::high_resolution_clock::now();
@@ -353,7 +338,6 @@ int main()
                 cout << "Visas sugaistas laikas: " << diff.count() << "s\n";
 
                 system("pause");
-                exit(0);
             }
             else if (inputStudentSize == 6 && inputContainer == 3) {
                 auto start = std::chrono::high_resolution_clock::now();
@@ -395,7 +379,6 @@ int main()
                 cout << "Visas sugaistas laikas: " << diff.count() << "s\n\n";
 
                 system("pause");
-                exit(0);
             }
         }
     }
@@ -493,5 +476,7 @@ int main()
     if (input == "N" || input == "n") {
         skaiciavimas();
     }
+    //testing::InitGoogleTest(&argc, argv);
+    //return RUN_ALL_TESTS();
     system("pause");
 }

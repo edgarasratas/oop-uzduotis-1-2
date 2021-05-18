@@ -47,8 +47,8 @@ using std::find_if;
 
 class Human {
 protected:
-	string m_name;
-	string m_surname;
+	string m_name = "";
+	string m_surname = "";
 public:
 	
 	virtual ~Human() = 0;
