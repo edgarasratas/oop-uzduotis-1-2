@@ -1,0 +1,32 @@
+digraph "nuskaitymas"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="nuskaitymas",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="compareByLastName",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$compare_by_last_name_8cpp.html#a0fc52405dd513e6101842599759e2893",tooltip=" "];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="Human::getName",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_human.html#abd2113cab509ec9309936f24fd51f35f",tooltip=" "];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="createDir",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$create_dir_8cpp.html#ac56e370a9e3ff7a105a834c666b5e843",tooltip=" "];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="readValues",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$read_values_8cpp.html#aa81b4618def639b4f3a9e8ceaf765f2d",tooltip=" "];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="Student::addGrade",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_student.html#ae793848e9adeb5414bc995b6a49337c3",tooltip=" "];
+  Node5 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="Student::containerSize",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_student.html#af8f17cecdc32dc48794a5bc22dec0c73",tooltip=" "];
+  Node5 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="Student::deleteLastGrade",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_student.html#a35bd75cb75b9bb6f691121be9e8e3cb3",tooltip=" "];
+  Node5 -> Node9 [color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="Student::getGrade",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_student.html#a8dca8d440345a65b65da10319ecdf50b",tooltip=" "];
+  Node5 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="Student::setExamGrade",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_student.html#a6772b925420e23cac72beb2636f54721",tooltip=" "];
+  Node5 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="Human::setName",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_human.html#a2894077e70890ecb62593b1fe1a5f343",tooltip=" "];
+  Node5 -> Node12 [color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="Student::setNumOfGrades",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_student.html#a224b9c491ef145aa5fd858201cffb815",tooltip=" "];
+  Node5 -> Node13 [color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="Human::setSurname",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_human.html#a5e40bb614ae46f8ce8f3120251abc798",tooltip=" "];
+}
