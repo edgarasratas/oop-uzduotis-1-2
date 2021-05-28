@@ -255,6 +255,8 @@ Programoje sudaryta papildoma abstrakti *Human* bazinė klasė, iš kurios *Stud
 -----------------------------------------------------------------
 [v3.0](https://github.com/edgarasratas/oop-uzduotis-1-2/tree/v3.0)
 -----------------------------------------------------------------
+Sukurta "Vector" klasė, kuri yra alternatyvi std::vector
+
 *Failo nuskaitymas*
 |   Konteineris       |         10000                  |         100000              |        1000000          |        10000000          |
 |---------------------|:------------------------------:|:---------------------------:|:-----------------------:|:------------------------:|
