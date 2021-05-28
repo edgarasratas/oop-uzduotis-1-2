@@ -1,6 +1,7 @@
 #include "Student.h"
 #include "isBad.h"
 #include "strategyTwo.h"
+#include "myVector.h"
 
 //deque
 void strategyTwo(deque<Student>& studentD, deque<Student>& losers, string fileSortLosers, string fileSortWinners) {
@@ -111,5 +112,40 @@ void strategyTwo(vector<Student>& studentV, vector<Student>& losers, string file
         foutWinners << std::setw(15) << std::left << a.getName()
                     << std::setw(15) << std::left << a.getSurname()
                     << std::setw(15) << std::left << fixed << std::setprecision(2) << a.getFinal() << '\n';
+    }
+}
+
+//myVector
+void strategyTwo(Vector<Student>& studentV, Vector<Student>& losers, string fileSortLosers, string fileSortWinners) {
+    ofstream foutLosers(fileSortLosers);
+    ofstream foutWinners(fileSortWinners);
+
+    for (auto a : studentV) {
+        if (a.getFinal() < 5) {
+            losers.push_back(a);
+        }
+    }
+
+
+    foutLosers << std::setw(15) << std::left << "Vardas"
+        << std::setw(15) << std::left << "Pavarde"
+        << std::setw(15) << std::left << "Galutinis (vid.)" << '\n'
+        << "--------------------------------------------- " << '\n';
+
+    foutWinners << std::setw(15) << std::left << "Vardas"
+        << std::setw(15) << std::left << "Pavarde"
+        << std::setw(15) << std::left << "Galutinis (vid.)" << '\n'
+        << "--------------------------------------------- " << '\n';
+
+    for (Student a : losers) {
+        foutLosers << std::setw(15) << std::left << a.getName()
+            << std::setw(15) << std::left << a.getSurname()
+            << std::setw(15) << std::left << fixed << std::setprecision(2) << a.getFinal() << '\n';
+    }
+
+    for (Student a : studentV) {
+        foutWinners << std::setw(15) << std::left << a.getName()
+            << std::setw(15) << std::left << a.getSurname()
+            << std::setw(15) << std::left << fixed << std::setprecision(2) << a.getFinal() << '\n';
     }
 }

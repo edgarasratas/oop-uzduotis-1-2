@@ -50,7 +50,6 @@ protected:
 	string m_name = "";
 	string m_surname = "";
 public:
-	
 	virtual ~Human() = 0;
 
 	virtual const string& getName() const { return m_name; }
