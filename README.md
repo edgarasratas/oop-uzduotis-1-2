@@ -256,6 +256,9 @@ Programoje sudaryta papildoma abstrakti *Human* bazinė klasė, iš kurios *Stud
 [v3.0](https://github.com/edgarasratas/oop-uzduotis-1-2/tree/v3.0)
 -----------------------------------------------------------------
 Sukurta "Vector" klasė, kuri yra alternatyvi std::vector
+Žemiau yra pateikti laikų palyginimai.
+
+Dirbant su Student klase:
 
 *Failo nuskaitymas*
 |   Konteineris       |         10000                  |         100000              |        1000000          |        10000000          |
@@ -280,3 +283,10 @@ Sukurta "Vector" klasė, kuri yra alternatyvi std::vector
 |---------------------|:------------------------------:|:--------------------------:|:------------------------:|:------------------------:|
 |      std::vector    |         0.0923271              |         1.24285            |        7.76049           |       90.9625            |
 |      myVector       |         0.0927078              |         1.24667            |        7.89768           |       91.3832            |
+
+Pridedant 100000/1000000/10000000/100000000 int tipo kintamuosius laikai bei perskirstymo skaičiai su 100'000'000:
+
+|   Konteineris       |         100000                  |         1000000          |        10000000       |       100000000       | Atminties perskirstymų skaičius (100 mill)|
+|---------------------|:-------------------------------:|:------------------------:|:---------------------:|:---------------------:|:--------------------------------:|
+|      std::vector    |         0.0349606               |         0.349482         |        3.50729        |       39.2671         |                47                |
+|      myVector       |         0.0077042               |         0.0788197        |        0.803229       |       12.5665         |                20                |
